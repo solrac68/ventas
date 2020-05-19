@@ -1,0 +1,16 @@
+@(vendedor : Vendedor)
+
+<html lang="en">
+<head>
+    <title>@vendedor.nombre</title>
+</head>
+<body>
+<h2>@vendedor.nombre</h2>
+<p>Celular: @vendedor.numCelular</p>
+<p>Estado: @vendedor.estado</p>
+<p>Identificación: @vendedor.id</p>
+<p>Fecha Ingreso: @vendedor.fechaIngreso.toString()</p>
+<a href="@routes.VendedorController.edit(vendedor.id)">Editar</a>
+<a href="@routes.VendedorController.destroy(vendedor.id)">Eliminar</a>
+</body>
+</html>

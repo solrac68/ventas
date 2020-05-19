@@ -1,0 +1,17 @@
+@(vendedores : Set[Vendedor])
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Todos los Vendedores</h1>
+    @for(vendedor <- vendedores){
+        <a href="@routes.VendedorController.show(vendedor.id)">@vendedor.nombre</a>
+        <p>Numero: @vendedor.numCelular</p>
+    }
+
+    <a href="@routes.VendedorController.create()">Ingresar Vendedor</a>
+</body>
+</html>

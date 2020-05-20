@@ -46,9 +46,9 @@ public class VendedorData {
     @Constraints.Required
     private String nombre;
 
-    @Constraints.Required
+    //@Constraints.Required
     private String numCelular;
 
-    @Constraints.Required
+    //@Constraints.Required
     private String estado;
 }

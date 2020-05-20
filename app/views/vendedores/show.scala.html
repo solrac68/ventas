@@ -1,16 +1,15 @@
 @(vendedor : Vendedor)
-
-<html lang="en">
-<head>
-    <title>@vendedor.nombre</title>
-</head>
-<body>
-<h2>@vendedor.nombre</h2>
-<p>Celular: @vendedor.numCelular</p>
-<p>Estado: @vendedor.estado</p>
-<p>Identificación: @vendedor.id</p>
-<p>Fecha Ingreso: @vendedor.fechaIngreso.toString()</p>
-<a href="@routes.VendedorController.edit(vendedor.id)">Editar</a>
-<a href="@routes.VendedorController.destroy(vendedor.id)">Eliminar</a>
-</body>
-</html>
+@layout(vendedor.nombre){
+<div class="card" style="width: 28rem;">
+    <div class="card-body">
+        <h5 class="card-title">@vendedor.nombre</h5>
+        <p class="card-text">Celular: @vendedor.numCelular</p>
+        <p class="card-text">Estado: @vendedor.estado</p>
+        <p class="card-text">Identificación: @vendedor.id</p>
+        <p class="card-text">Fecha Ingreso: @vendedor.fechaIngreso.toString()</p>
+        <a href="@routes.VendedorController.edit(vendedor.id)" class="btn btn-primary">Editar</a>
+        <a href="@routes.VendedorController.destroy(vendedor.id)" class="btn btn-primary">Eliminar</a>
+        <a class="btn btn-secondary" href="@routes.VendedorController.index()">Cancelar</a>
+    </div>
+</div>
+}

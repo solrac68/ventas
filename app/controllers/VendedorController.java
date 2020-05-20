@@ -50,12 +50,13 @@ public class VendedorController extends Controller  {
     // para guardar el vendedor
     public Result save(Http.Request request){
         final Form<VendedorData> boundForm = form.bindFromRequest(request);
+        VendedorData data = boundForm.get();
 
-        if (boundForm.hasErrors()) {
+        if (boundForm.hasErrors() || Vendedor.findById(data.getId()) != null) {
             logger.error("errors = {}", boundForm.errors());
             return badRequest(views.html.vendedores.create.render(boundForm, request, messagesApi.preferred(request)));
         } else {
-            VendedorData data = boundForm.get();
+
             Vendedor.add(new Vendedor(data.getId(),data.getNombre(),data.getNumCelular(),LocalDate.now(),data.getEstado()));
             return redirect(routes.VendedorController.index());
         }

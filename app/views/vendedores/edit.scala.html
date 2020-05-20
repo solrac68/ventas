@@ -1,32 +1,25 @@
 @import play.mvc.Http.Request
 @(vendedorFrom : Form[VendedorData])(implicit request: Request, messages: play.i18n.Messages)
+@layout("Modificar Vendedor"){
+    <h1>Modificar Vendedor</h1>
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Modificar Vendedor</title>
-</head>
-<body>
-<h1>Modificar Vendedor</h1>
-
-@* Global errors are not tied to any particular form field *@
-@if(vendedorFrom.hasGlobalErrors) {
+    @* Global errors are not tied to any particular form field *@
+    @if(vendedorFrom.hasGlobalErrors) {
         @vendedorFrom.globalErrors.asScala.map { error: play.data.validation.ValidationError =>
         <div>
             @error.key: @error.message
         </div>
+        }
+    }
+
+
+    @helper.form(routes.VendedorController.update){
+        @helper.CSRF.formField
+        @helper.inputText(vendedorFrom("id"))
+        @helper.inputText(vendedorFrom("nombre"))
+        @helper.inputText(vendedorFrom("numCelular"))
+        @helper.inputText(vendedorFrom("estado"))
+        <input type="submit"  class="btn btn-primary" value="Modificar vendedor">
+        <a class="btn btn-secondary" href="@routes.VendedorController.index()">Cancelar</a>
     }
 }
-
-
-@helper.form(routes.VendedorController.update){
-    @helper.CSRF.formField
-    @helper.inputText(vendedorFrom("id"))
-    @helper.inputText(vendedorFrom("nombre"))
-    @helper.inputText(vendedorFrom("numCelular"))
-    @helper.inputText(vendedorFrom("estado"))
-    <input type="submit" value="Modificar vendedor">
-}
-
-</body>
-</html>

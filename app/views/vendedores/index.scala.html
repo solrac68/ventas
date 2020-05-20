@@ -1,17 +1,29 @@
 @(vendedores : Set[Vendedor])
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>Todos los Vendedores</h1>
-    @for(vendedor <- vendedores){
-        <a href="@routes.VendedorController.show(vendedor.id)">@vendedor.nombre</a>
-        <p>Numero: @vendedor.numCelular</p>
-    }
-
-    <a href="@routes.VendedorController.create()">Ingresar Vendedor</a>
-</body>
-</html>
+@layout("Todos Los vendedores"){
+    <h1>Vendedores</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Id</th>
+            <th>Celular</th>
+            <th>Estado</th>
+            <th>Fecha Ingreso</th>
+        </tr>
+        </thead>
+        <tbody>
+        @for(vendedor <- vendedores){
+            <tr>
+                <td><a href="@routes.VendedorController.show(vendedor.id)">@vendedor.nombre</a></td>
+                <td>@vendedor.id</a></td>
+                <td>@vendedor.numCelular</td>
+                <td>@vendedor.estado</td>
+                <td>@vendedor.fechaIngreso.toString()</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <br>
+    <a href="@routes.VendedorController.create()" class="btn btn-primary"><i class="icon-plus"></i>Agregar Vendedor</a>
+}

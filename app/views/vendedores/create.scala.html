@@ -1,32 +1,25 @@
 @import play.mvc.Http.Request
 @(vendedorFrom : Form[VendedorData])(implicit request: Request, messages: play.i18n.Messages)
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Crear Vendedor</title>
-</head>
-<body>
+@layout("Crear Vendedor"){
     <h1>Crear Vendedor</h1>
-
     @* Global errors are not tied to any particular form field *@
     @if(vendedorFrom.hasGlobalErrors) {
-            @vendedorFrom.globalErrors.asScala.map { error: play.data.validation.ValidationError =>
-            <div>
-                @error.key: @error.message
-            </div>
+        @vendedorFrom.globalErrors.asScala.map { error: play.data.validation.ValidationError =>
+        <div>
+            @error.key: @error.message
+        </div>
         }
     }
-
-
     @helper.form(routes.VendedorController.save){
-        @helper.CSRF.formField
-        @helper.inputText(vendedorFrom("id"))
-        @helper.inputText(vendedorFrom("nombre"))
-        @helper.inputText(vendedorFrom("numCelular"))
-        @helper.inputText(vendedorFrom("estado"))
-        <input type="submit" value="Crear vendedor">
+        <fieldset>
+            @helper.CSRF.formField
+            @helper.inputText(vendedorFrom("id"),Symbol("showConstraints") -> false)
+            @helper.inputText(vendedorFrom("nombre"),Symbol("showConstraints") -> false)
+            @helper.inputText(vendedorFrom("numCelular"),Symbol("showConstraints") -> false)
+            @helper.inputText(vendedorFrom("estado"),Symbol("showConstraints") -> false)
+        </fieldset>
+        <input type="submit" class="btn btn-primary" value="Crear vendedor">
+        <a class="btn btn-secondary" href="@routes.VendedorController.index()">Cancelar</a>
     }
 
-</body>
-</html>
+}

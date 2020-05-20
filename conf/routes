@@ -3,7 +3,7 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           controllers.HomeController.index
+GET     /                           controllers.VendedorController.index
 GET     /vendedores                 controllers.VendedorController.index
 GET     /vendedores/create          controllers.VendedorController.create(request: Request)
 GET     /vendedores/:id             controllers.VendedorController.show(id: Integer)

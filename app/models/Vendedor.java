@@ -19,6 +19,8 @@ public class Vendedor {
         this.fechaIngreso = fechaIngreso;
         this.estado = estado;
 
+
+
     }
 
     public Integer id;
